@@ -10,28 +10,29 @@ using namespace std;
 
 int main() {
 
+    Checking frank {"Frank", 5000};
+    cout << frank << endl;
 
-    vector<Account *> v;
+    Account *trust = new Trust("James");
+    cout << *trust << endl;
 
-    Account *q = new Checking{"checking", 100, 3};
+    Account *p1 = new Checking("Larry", 10000);
+    Account *p2 = new Saving("Moe", 1000);
+    Account *p3 = new Trust("Curly");
 
-    Account *w = new Saving{"saving", 200, 4};
+    std::vector<Account *> accounts {p1,p2,p3};
 
-    Account *e = new Trust {"trust", 300, 500};
+    display(accounts);
+    deposit(accounts, 1000);
 
-    v.push_back(q);
-    v.push_back(w);
-    v.push_back(e);
+    display(accounts);
 
-    display(v);
+    withdraw(accounts, 2000);
 
-    deposit(v, 100);
+    display(accounts);
 
-    display(v);
-
-    withdraw(v, 100);
-
-    display(v);
-
+    delete p1;
+    delete p2;
+    delete p3;
     return 0;
 }

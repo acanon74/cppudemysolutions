@@ -34,8 +34,11 @@ bool Trust::withdraw(const double &amount) {
         max_withdrawals++;
         return Account::withdraw(amount);
     }
+    else if (max_withdrawals >= 3){
+        cout << "Transaction with account" << *this << " not valid. [withdraw limit reached]" << endl;
+    }
     else{
-        cout << "Transaction with account" << this->display() << " not valid. [limit of withdraws reached]" << endl;
+        cout << "Transaction with account" << *this << " not valid. [insufficient funds]" << endl;
         return false;
     }
 }

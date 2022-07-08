@@ -20,6 +20,7 @@ bool Account::withdraw(const double &amount) {
         return true;
     }
     else{
+        cout << "Transaction on account " << *this << " not valid. [insufficient funds]" << endl;
         return false;
     }
 }
