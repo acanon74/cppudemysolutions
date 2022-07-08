@@ -6,9 +6,9 @@
 #define POLYMORPHISM_I_PRINTABLE_H
 
 #include <iostream>
-#include <string>
 
 using namespace std;
+
 
 class I_Printable {
 

@@ -11,19 +11,23 @@ class Saving: public Account {
 
 private:
 
-    string name;
-    double balance;
+    static constexpr const char *def_name = "Unnamed Saving Account";
+    static constexpr double def_balance = 0.0;
+    static constexpr double def_int_rate = 0.0;
+
+protected:
+
     double int_rate;
 
 public:
 
-    Saving(const string &name, const double &balance = 0.0, const double &int_rate = 0.0);
-    Saving(const Saving &source, const double &int_rate);
-    Saving(const Saving &&source, const double &int_rate);
+    Saving(string name = def_name, double balance = def_balance, double int_rate = def_int_rate);
+    Saving(const Saving &source, double int_rate);
+    Saving(const Saving &&source, double int_rate);
     virtual ~Saving() = default;
 
-    virtual bool deposit(const double &amount) override;
-    virtual bool withdraw(const double &amount) override;
+    virtual bool deposit(double amount) override;
+    virtual bool withdraw(double amount) override;
 
 };
 

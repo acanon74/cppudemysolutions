@@ -1,7 +1,7 @@
 //
 // Created by USUARIO on 07/05/22.
 //
-
+#include <iostream>
 #include "I_Printable.h"
 
 string I_Printable::display() const {}

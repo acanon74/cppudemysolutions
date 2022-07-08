@@ -5,20 +5,31 @@
 
 
 void display(const vector<Account *> &accounts) {
-    for(auto i: accounts) {
+    for(const auto i: accounts) {
         cout << *i << endl;
     }
 }
 
-void deposit(const vector<Account *> &accounts, const double &amount) {
+void deposit(vector<Account *> &accounts, double amount) {
     for(auto i: accounts) {
-        i->deposit(amount);
+        if(i->deposit(amount)) {
+            cout << "Deposited " << amount << " to " << *i << endl;
+        }
+        else{
+            cout << "Failed deposit of " << amount << " from " << *i << endl;
+        }
     }
 }
 
-void withdraw(const vector<Account *> &accounts, const double &amount) {
+void withdraw(vector<Account *> &accounts, double amount) {
 
-    for(auto i: accounts) {
-        i->withdraw(amount);
+    for(const auto i: accounts) {
+        if(i->withdraw(amount)) {
+            cout << "Withdrew " << amount << " from " << *i << endl;
+        }
+        else{
+            cout << "Failed withdrawal of " << amount << " from " << *i << endl;
+        }
     }
+
 }

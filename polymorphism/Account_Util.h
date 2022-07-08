@@ -3,15 +3,15 @@
 #ifndef POLYMORPHISM_ACCOUNT_UTIL_H
 #define POLYMORPHISM_ACCOUNT_UTIL_H
 
-#include <iostream>
-#include <string>
+
 #include <vector>
 
 #include "classes/Account.h"
 
+
 void display(const vector<Account *> &accounts);
-void deposit(const vector<Account *> &accounts, const double &amount);
-void withdraw(const vector<Account *> &accounts, const double &amount);
+void deposit(vector<Account *> &accounts, double amount);
+void withdraw(vector<Account *> &accounts, double amount);
 
 
 #endif //POLYMORPHISM_ACCOUNT_UTIL_H
