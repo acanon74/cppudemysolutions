@@ -4,7 +4,6 @@
 #include <fstream>
 
 using namespace std;
-char get_char(fstream, int, bool);
 
 
 int main() {
@@ -22,13 +21,10 @@ int main() {
 
     char c;
     bool match{false};
-    bool in_word;
-    int word_counter;
 
-    while(true) {
+    while(file.peek() != EOF) {
 
-        if(file.peek() == EOF)
-            break;
+        c = file.get();
 
         if(c == word.at(0)) {
 
@@ -36,7 +32,7 @@ int main() {
 
             for(int i{1}; i < word.length(); i++) {
 
-                c = get_char(file, word_counter, in_word);
+                c = file.get();
 
                 if(c != word.at(i)) {
                     match = false;
@@ -54,22 +50,4 @@ int main() {
     cout << counter;
 
     return 0;
-}
-
-char get_char(fstream file, int n_words, bool whitespace) {
-
-    char c;
-
-    file.get(c);
-
-    if(isalpha(c) && !whitespace) {
-        whitespace = true;
-    }
-
-    if(isspace(c) && whitespace) {
-        n_words++;
-        whitespace = false;
-    }
-
-    return c;
 }
