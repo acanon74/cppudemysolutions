@@ -29,7 +29,7 @@ void display_playlist(const std::list<Song> &playlist, const Song &current_song)
     // This function should display the current playlist
     // and then the current song playing.
 
-    for(Song s: playlist) {
+    for(const Song &s: playlist) {
         cout << s.get_name() << endl;
         cout << s.get_artist() << endl;
         cout << s.get_rating() << endl;
@@ -51,7 +51,7 @@ int main() {
     };
 
     std::list<Song>::iterator current_song = playlist.begin();
-
+    display_playlist(playlist, *current_song);
     char selection{'Q'};
 
     do {
@@ -60,27 +60,27 @@ int main() {
         selection = toupper(selection);
 
         if(selection == 'F') {
+            cout << "Playing first song!" << endl;
             current_song = playlist.begin();
             play_current_song(*current_song);
         }
 
         if(selection == 'N') {
 
-            if(*current_song == playlist.back()) {
+            cout << "Playing next song!" << endl;
+            if(current_song == playlist.end()) {
                 current_song = playlist.begin();
-                play_current_song(*current_song);
             } else {
                 current_song++;
-                play_current_song(*current_song);
             }
+            play_current_song(*current_song);
         }
 
         if(selection == 'A') {
 
-            string t_name;
-            string t_author;
+            string t_name, t_author;
             int t_rating{0};
-
+            cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             cout << "Type the name for the new song:";
             getline(cin, t_name);
@@ -92,23 +92,28 @@ int main() {
             cin >> t_rating;
 
             playlist.emplace(current_song, Song{t_name, t_author, t_rating});
+            current_song--;
+            play_current_song(*current_song);
         }
 
         if(selection == 'P') {
 
+            cout << "Playing previous song!" << endl;
             if(current_song == playlist.begin()) {
-                current_song = --(playlist.end());
-                play_current_song(*current_song);
-            }else {
-                current_song--;
-                play_current_song(*current_song);
+                current_song = playlist.end();
             }
+
+            current_song--;
+            play_current_song(*current_song);
 
 
         }
 
         if(selection == 'L') {
             display_playlist(playlist, *current_song);
+        }
+        if(selection == 'Q') {
+            cout << "Quitting player!" << endl;
         }
 
 
